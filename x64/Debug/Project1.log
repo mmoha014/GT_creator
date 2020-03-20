@@ -1,0 +1,32 @@
+﻿  Source.cpp
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(38): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(39): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(86): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(94): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(102): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(115): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(232): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(233): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(272): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(273): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(217): warning C4101: 'bF1x': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(216): warning C4101: 'tx': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(214): warning C4101: 'bFx': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(214): warning C4101: 'bFy': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(217): warning C4101: 'bF1y': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(216): warning C4101: 'ty': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(258): warning C4101: 'bF1x': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(257): warning C4101: 'tx': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(255): warning C4101: 'bFx': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(255): warning C4101: 'bFy': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(258): warning C4101: 'bF1y': unreferenced local variable
+c:\users\twbas\source\repos\fb-object-tracking\project\source.cpp(257): warning C4101: 'ty': unreferenced local variable
+  Project1.vcxproj -> C:\Users\twbas\source\repos\FB-object-tracking\project\x64\Debug\Project1.exe

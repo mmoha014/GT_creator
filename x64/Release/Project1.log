@@ -1,0 +1,24 @@
+﻿  Source.cpp
+c:\users\twbas\source\repos\live_object_tracker\project1 - copy\source.cpp(107): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\twbas\source\repos\live_object_tracker\project1 - copy\source.cpp(108): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\twbas\source\repos\live_object_tracker\project1 - copy\source.cpp(205): warning C4244: 'argument': conversion from '_Tp' to 'const _Ty', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::imshow(class cv::String const &,class cv::_InputArray const &)" (?imshow@cv@@YAXAEBVString@1@AEBV_InputArray@1@@Z)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::dilate(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::_InputArray const &,class cv::Point_<int>,int,int,class cv::Scalar_<double> const &)" (?dilate@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@0V?$Point_@H@1@HHAEBV?$Scalar_@N@1@@Z)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::erode(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::_InputArray const &,class cv::Point_<int>,int,int,class cv::Scalar_<double> const &)" (?erode@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@0V?$Point_@H@1@HHAEBV?$Scalar_@N@1@@Z)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::cvtColor(class cv::_InputArray const &,class cv::_OutputArray const &,int,int)" (?cvtColor@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@HH@Z)
+Source.obj : error LNK2001: unresolved external symbol "class cv::_InputOutputArray const & __cdecl cv::noArray(void)" (?noArray@cv@@YAAEBV_InputOutputArray@1@XZ)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::flip(class cv::_InputArray const &,class cv::_OutputArray const &,int)" (?flip@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@H@Z)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::drawKeypoints(class cv::_InputArray const &,class std::vector<class cv::KeyPoint,class std::allocator<class cv::KeyPoint> > const &,class cv::_InputOutputArray const &,class cv::Scalar_<double> const &,int)" (?drawKeypoints@cv@@YAXAEBV_InputArray@1@AEBV?$vector@VKeyPoint@cv@@V?$allocator@VKeyPoint@cv@@@std@@@std@@AEBV_InputOutputArray@1@AEBV?$Scalar_@N@1@H@Z)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::transpose(class cv::_InputArray const &,class cv::_OutputArray const &)" (?transpose@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@@Z)
+Source.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::CascadeClassifier::detectMultiScale(class cv::_InputArray const &,class std::vector<class cv::Rect_<int>,class std::allocator<class cv::Rect_<int> > > &,double,int,int,class cv::Size_<int>,class cv::Size_<int>)" (?detectMultiScale@CascadeClassifier@cv@@QEAAXAEBV_InputArray@2@AEAV?$vector@V?$Rect_@H@cv@@V?$allocator@V?$Rect_@H@cv@@@std@@@std@@NHHV?$Size_@H@2@2@Z)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::circle(class cv::_InputOutputArray const &,class cv::Point_<int>,int,class cv::Scalar_<double> const &,int,int,int)" (?circle@cv@@YAXAEBV_InputOutputArray@1@V?$Point_@H@1@HAEBV?$Scalar_@N@1@HHH@Z)
+Source.obj : error LNK2001: unresolved external symbol "void __cdecl cv::resize(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::Size_<int>,double,double,int)" (?resize@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@V?$Size_@H@1@NNH@Z)
+C:\Users\twbas\source\repos\Live_Object_Tracker\Project1 - Copy\x64\Release\Project1.exe : fatal error LNK1120: 11 unresolved externals
