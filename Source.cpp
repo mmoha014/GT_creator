@@ -58,7 +58,7 @@ struct Rep
 
 ofstream gtFile;
 ofstream rFile; 
-string videoId = "BP3"; 
+string videoId = "LR13"; 
 vector<Rep> GT_reps;
 int gtCount = 0;
 int frameCount = 0; 
@@ -70,6 +70,7 @@ float eF = 0.0;
 
 static void onMouse(int event, int x, int y, int, void*)
 {
+
 	if (event != EVENT_LBUTTONDOWN)
 		return;
 
