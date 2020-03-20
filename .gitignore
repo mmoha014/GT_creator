@@ -1,2 +1,4 @@
-.vs*
+.vs/*
 Project1*
+Debug/* 
+x64/*
