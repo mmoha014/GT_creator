@@ -11,14 +11,17 @@ struct Rep
 	vector<int> bottomF; 
 	float uVelocity, dVelocity;
 	int distance;
+	float uROM, dROM; 
 	double duration, liftT, lowT;
-	Point top;
-	vector<Point> bottom;
+	Point3f top;
+	vector<Point3f> bottom;
 
 	Rep rep()
 	{
 		this->topF = 0;
 		this->distance = 0;
+		this->uROM = 0.0; 
+		this->dROM = 0.0; 
 		this->duration = 0.0;
 		this->liftT = 0.0; 
 		this->lowT = 0.0;
@@ -45,6 +48,8 @@ struct Rep
 	{
 		this->topF = 0;
 		this->distance = 0;
+		this->uROM = 0.0;
+		this->dROM = 0.0;
 		this->duration = 0.0;
 		this->liftT = 0.0;
 		this->lowT = 0.0; 
@@ -58,15 +63,17 @@ struct Rep
 
 ofstream gtFile;
 ofstream rFile; 
-string videoId = "LR13"; 
+string videoId = "D7"; 
 vector<Rep> GT_reps;
 int gtCount = 0;
 int frameCount = 0; 
 Rep* gt_rep = new Rep();
-Point t, st, e;
-float tF = 0.0;
-float stF = 0.0;
-float eF = 0.0;
+
+Point b1rW, b1rE, b1rS, trW, trE, trS, b2rW, b2rE, b2rS;
+
+int tF = 0;
+int stF = 0;
+int eF = 0;
 
 static void onMouse(int event, int x, int y, int, void*)
 {
@@ -81,43 +88,93 @@ static void onMouse(int event, int x, int y, int, void*)
 	if (gtCount == 1)
 	{
 		gtFile.open("GT_" + videoId + ".txt");
-
-		st.x = seed.x;
-		st.y = seed.y;
+		b1rW = seed; 
 		stF = frameCount;
-
-		cout << "Start f, x, y : " << stF << " " << st.x << ", " << st.y << endl;
-
+		cout << "Start frame: " << stF << endl;
+		cout << "b1 Right Wrist (x,y):		(" << b1rW.x << "," << b1rW.y << ")" << endl;
 	}
+
 	if (gtCount == 2)
 	{
-		t = seed;
-		tF = frameCount;
-
-		cout << "Top f, x, y : " << tF << " " << t.x << ", " << t.y << endl;
-
+		b1rE = seed;
+		cout << "b1 Right Elbow (x,y):		(" << b1rE.x << "," << b1rE.y << ")" << endl; 
 	}
+
 	if (gtCount == 3)
 	{
-		e = seed;
-		eF = frameCount;
+		b1rS = seed;
+		cout << "b1 Right Shoulder(x,y):		(" << b1rS.x << "," << b1rS.y << ")" << endl;
+	}
 
-		GT_reps.push_back(*gt_rep);
-
-		cout << GT_reps.size() << " \nEnd f, x, y : " << eF << " " << e.x << ", " << e.y << endl;
-
-
-		gtFile << "Rep #" << GT_reps.size() << ", " << stF << ", " << tF << ", " << eF << ", " << st.x << ", " << st.y << ", " << t.x << ", " << t.y << ", " << e.x << ", " << e.y << endl;
-
-		gt_rep = new Rep();
-		gtCount = 1;
-		st.x = seed.x;
-		st.y = seed.y;
-		stF = frameCount;
-		cout << "Start f, x, y : " << stF << " " << st.x << ", " << st.y << endl;
+	if (gtCount == 4)
+	{
+		tF = frameCount; 
+		trW = seed;
+		cout << "Top frame: " << tF << endl;
+		cout << "t Right Wrist (x,y):		(" << trW.x << "," << trW.y << ")" << endl;
 
 	}
 
+	if (gtCount == 5)
+	{
+		trE = seed;
+		cout << "t Right Elbow (x,y):		(" << trE.x << "," << trE.y << ")" << endl;
+	}
+
+	if (gtCount == 6)
+	{
+		trS = seed;
+		cout << "t Right Shoulder(x,y):		(" << trS.x << "," << trS.y << ")" << endl;
+	}
+
+	if (gtCount == 7)
+	{
+		eF = frameCount;
+		b2rW = seed;
+		cout << "End frame: " << eF << endl;
+		cout << "b2 Right Wrist (x,y):		(" << b2rW.x << "," << b2rW.y << ")" << endl;
+
+	}
+
+	if (gtCount == 8)
+	{
+		b2rE = seed;
+		cout << "b2 Right Elbow (x,y):		(" << b2rE.x << "," << b2rE.y << ")" << endl;
+	}
+
+	if (gtCount == 9)
+	{
+		b2rS = seed;
+		cout << "b2 Right Shoulder(x,y):		(" << b2rS.x << "," << b2rS.y << ")" << endl;
+
+		GT_reps.push_back(*gt_rep); 
+
+		gtFile << GT_reps.size() << " " << stF << " " << tF << " " << eF << " " 
+								<< b1rW.x << " " << b1rW.y << " " << b1rE.x << " " << b1rE.y << " " << b1rS.x << " " << b1rS.y << " " 
+								<< trW.x << " " << trW.y << " " << trE.x << " " << trE.y << " " << trS.x << " " << trS.y << " "
+								<< b2rW.x << " " << b2rW.y << " " << b2rE.x << " " << b2rE.y << " " << b2rS.x << " " << b2rS.y << endl; 
+
+		cout << GT_reps.size() << " " << stF << " " << tF << " " << eF << " "
+								<< b1rW.x << " " << b1rW.y << " " << b1rE.x << " " << b1rE.y << " " << b1rS.x << " " << b1rS.y << " "
+								<< trW.x << " " << trW.y << " " << trE.x << " " << trE.y << " " << trS.x << " " << trS.y << " "
+								<< b2rW.x << " " << b2rW.y << " " << b2rE.x << " " << b2rE.y << " " << b2rS.x << " " << b2rS.y << endl;
+		
+
+		gt_rep = new Rep();
+		
+		stF = frameCount;
+
+		b1rW = Point();
+		b1rE = Point();
+		b1rS = Point();
+
+		b1rW = b2rW;
+		b1rE = b2rE;
+		b1rS = b2rS;
+
+		gtCount = 3; 
+
+	}
 }
 
 void calcDiff(); 
@@ -174,7 +231,7 @@ int main(int argc, char **argv)
 	gtFile.close();
 	rFile.close(); 
 
-	//calcDiff();
+	cout << "Finished" << endl;
 
 	return 0; 
 }
@@ -192,10 +249,10 @@ void calcDiff()
 	int TP = 0; 
 	int FP = 0; 
 	 
-	rFile.open(videoId + "reps.txt");
-	gtFile.open("GT_" + videoId + ".txt");
-	roFile.open(videoId + "ROM.txt");
-	goFile.open(videoId + "gtROM.txt");
+	rFile.open("out_" + videoId + ".txt");
+	gtFile.open(videoId + ".txt");
+	//roFile.open(videoId + "ROM.txt");
+	//goFile.open(videoId + "gtROM.txt");
 
 	
 	if (rFile.is_open() && gtFile.is_open())
@@ -208,17 +265,20 @@ void calcDiff()
 		cout << "Error Reading Files" << endl;
 	}
 
-	while (!rFile.eof())
+	while (rFile)
 	{
+
+		cout << "READING REP FILE" << endl; 
+
 		int num;
 		int bF, bF1;
-		int bFx, bFy; 
-		Point *bFp, *bFp1;
+		float bFx, bFy; 
+		Point3f *bFp, *bFp1;
 		int tx, ty; 
-		int bF1x, bF1y; 
+		float bF1x, bF1y; 
 
-		bFp = new Point(); 
-		bFp1 = new Point(); 
+		bFp = new Point3f(); 
+		bFp1 = new Point3f(); 
 
 		rFile >> num >> bF >> prRep.topF >> bF1 >> bFp->x >> bFp->y >> prRep.top.x >> prRep.top.y >> bFp1->x >> bFp1->y;
 
@@ -227,18 +287,24 @@ void calcDiff()
 		prRep.bottom.push_back(*bFp);
 		prRep.bottom.push_back(*bFp1); 
 
-		prRep.distance = (abs(prRep.bottom[0].y - prRep.top.y) + abs(prRep.bottom[1].y - prRep.top.y)); 
+		prRep.uROM = abs(prRep.top.y - prRep.bottom[0].y);
+		prRep.dROM = abs(prRep.top.y - prRep.bottom[1].y);
+		prRep.distance = (abs(prRep.bottom[0].y - prRep.top.y) + abs(prRep.bottom[1].y - prRep.top.y));
+		
 		prRep.liftT = (abs(prRep.bottomF[0] - prRep.topF) / 30.0);
 		prRep.lowT = (abs(prRep.bottomF[1] - prRep.topF) / 30.0);
+		
 		prRep.uVelocity = ((abs(prRep.top.y - (prRep.bottom[0].y))) / prRep.liftT);
 		prRep.dVelocity = ((abs(prRep.top.y - (prRep.bottom[1].y))) / prRep.lowT);
 
-		roFile << prRep.distance << endl;
+		//roFile << prRep.distance << endl;
 
 		if (prReps.empty())
 			prReps.push_back(prRep);
 		if (!prReps.empty() && bF != prReps[prReps.size() - 1].bottomF[0])
 			prReps.push_back(prRep); 
+
+		cout << num << " " << bF << " " << prRep.topF << " " << bF1 << " " << bFp->x << " " << bFp->y << " " << prRep.top.x << " " << prRep.top.y << " " << bFp1->x << " " << bFp1->y << endl;
 
 		prRep.bottomF.clear();
 
@@ -247,19 +313,22 @@ void calcDiff()
 
 	}
 
-	roFile.close();
+	//roFile.close();
 
 	while (gtFile)
 	{
+
+		cout << "READING GT FILE" << endl;
+
 		int num;
 		int bF, bF1;
-		int bFx, bFy;
-		Point *bFp, *bFp1;
+		float bFx, bFy;
+		Point3f *bFp, *bFp1;
 		int tx, ty;
-		int bF1x, bF1y;
+		float bF1x, bF1y;
 
-		bFp = new Point();
-		bFp1 = new Point();
+		bFp = new Point3f();
+		bFp1 = new Point3f();
 
 		gtFile >> num >> bF >> gtRep.topF >> bF1 >> bFp->x >> bFp->y >> gtRep.top.x >> gtRep.top.y >> bFp1->x >> bFp1->y;
 		gtRep.bottomF.push_back(bF);
@@ -267,13 +336,17 @@ void calcDiff()
 		gtRep.bottom.push_back(*bFp);
 		gtRep.bottom.push_back(*bFp1);
 
+		gtRep.uROM = abs(gtRep.top.y - gtRep.bottom[0].y); 
+		gtRep.dROM = abs(gtRep.top.y - gtRep.bottom[1].y);
 		gtRep.distance = (abs(gtRep.bottom[0].y - gtRep.top.y) + abs(gtRep.bottom[1].y - gtRep.top.y));
+		
 		gtRep.liftT = (abs(gtRep.bottomF[0] - gtRep.topF) / 30.0);
 		gtRep.lowT = (abs(gtRep.bottomF[1] - gtRep.topF) / 30.0);
+		
 		gtRep.uVelocity = ((abs(gtRep.top.y - (gtRep.bottom[0].y))) / gtRep.liftT);
 		gtRep.dVelocity = ((abs(gtRep.top.y - (gtRep.bottom[1].y))) / gtRep.lowT);
 
-		goFile << gtRep.distance << endl; 
+		//goFile << gtRep.distance << endl; 
 
 		if (gtReps.empty())
 			gtReps.push_back(gtRep);
@@ -289,11 +362,12 @@ void calcDiff()
 
 	}
 
-	goFile.close(); 
+	//goFile.close(); 
 
 	int repCount = 0; 
 
-	int ROM_error = 0; 
+	float liROM_error = 0.0; 
+	float loROM_error = 0.0; 
 	double liT_error = 0; 
 	double loT_error = 0;
 	double liV_error = 0.0;
@@ -311,17 +385,21 @@ void calcDiff()
 
 		for (Rep g : gtReps)
 		{
+
+			cout << "Rep: " << repCount << endl;
+
 			if (abs(r.bottomF[0] - g.bottomF[0]) <= 15)
 			{
 				cout << repCount << endl; 
 				
-				ROM_error = (abs(r.distance - g.distance));
+				liROM_error = (abs(r.uROM - g.uROM));
+				loROM_error = (abs(r.dROM - g.dROM));
 				liT_error = (abs(r.liftT - g.liftT));
 				loT_error = (abs(r.lowT - g.lowT)); 
 				liV_error = (abs(r.uVelocity - g.uVelocity)); 
 				loV_error = (abs(r.dVelocity - g.dVelocity)); 
 
-				reFile << ROM_error << endl; 
+				reFile << liROM_error << " " << loROM_error << endl; 
 
 				teFile << liT_error << " " << loT_error << endl;
 
