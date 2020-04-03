@@ -1,0 +1,1 @@
+b1_frame, b1_x,b1_y, t_frame, t_x, t_y, b2_frame, b2_x, b2_y
