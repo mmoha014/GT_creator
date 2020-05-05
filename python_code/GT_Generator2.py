@@ -5,11 +5,13 @@ import os
 import re
 import random 
 
+
+
 def keyFunc(afilename):
     nondigits = re.compile("\D")
     return int(nondigits.sub("", afilename))
 
-filename = 'D9'
+filename = 'D1'
 folder = '/home/mgharasu/Videos/Dan videos/dip/'
 
 # capt = cv2.VideoCapture('/home/mgharasu/Videos/Dan videos/curl/'+filename+'.avi')
@@ -90,7 +92,7 @@ while (count<len(frame_files)):
 # frame_seq = [1, 58, 127, 129, 194, 269, 271, 338, 438]
 # coord_seq = [[421, 219], [421, 137], [422, 231], [422, 231], [422, 132], [422, 232], [421, 235], [424, 134], [422, 226]]
 # capt.release()
-gt_f = open(folder+filename+'.txt','w')
+gt_f = open(folder+filename+'-new.txt','w')
 line = ''
 c=0
 while c<len(frame_seq):
